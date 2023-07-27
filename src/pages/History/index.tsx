@@ -1,4 +1,4 @@
-import { HistoryContainer, HistoryList } from "./styles"
+import { HistoryContainer, HistoryList, Status } from "./styles"
 
 export const History = () => {
     return (
@@ -20,37 +20,49 @@ export const History = () => {
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                                <Status statusColor='green'>Finished</Status>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                            <Status statusColor='yellow'>In progress</Status>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                                <Status statusColor='red'>Interrupted</Status>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                                <Status statusColor='green'>Finished</Status>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                                <Status statusColor='yellow'>In progress</Status>
+                            </td>
                         </tr>
                         <tr>
                             <td>Tasks</td>
                             <td>20 minutes</td>
                             <td>2 months ago</td>
-                            <td>Finished</td>
+                            <td>
+                                <Status statusColor='red'>Interrupted</Status>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
