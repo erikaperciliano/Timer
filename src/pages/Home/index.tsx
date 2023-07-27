@@ -7,10 +7,24 @@ export const Home = () => {
             <form action="">
                 <FormContainer>
                     <label htmlFor="task">I will work in</label>
-                    <TaskInput id="task" placeholder="Give a name for you project"/>
+                    <TaskInput list="task-sugestions" id="task" placeholder="Give a name for you project"/>
+                    
+                    <datalist id="task-sugestions">
+                        <option>Project 1</option>
+                        <option>Project 2</option>
+                        <option>Project 3</option>
+                        <option>Project 4</option>
+                    </datalist>
 
                     <label htmlFor="minutesAmount">During</label>
-                    <MinutesAmountInput type='number' id="minutesAmount" placeholder="00"/>
+                    <MinutesAmountInput 
+                        type='number' 
+                        id="minutesAmount" 
+                        placeholder="00" 
+                        step={5} 
+                        min={5} 
+                        max={60}
+                    />
 
                     <span>minutes.</span>
                 </FormContainer>
