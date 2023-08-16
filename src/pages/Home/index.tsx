@@ -8,7 +8,7 @@ import differenceInSeconds from "date-fns/differenceInSeconds"
 
 const newCycleFormValidationSchema = zod.object({
     task: zod.string().min(1, 'Report the task!'),
-    minutesAmount: zod.number().min(5).max(60)
+    minutesAmount: zod.number().min(1).max(60)
 })
 
 type newCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
@@ -19,6 +19,7 @@ interface Cycle {
     minutesAmount: number;
     startDate: Date;
     interruptedDate?: Date;
+    finishedDate?: Date;
 }
 
 export const Home = () => {
@@ -36,20 +37,39 @@ export const Home = () => {
 
     const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
 
+    const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0
+
     useEffect(() => {
         let interval: number;
 
         if(activeCycle){
             setInterval(() => {
-                setAmountSecondPassed(differenceInSeconds(new Date(), activeCycle.startDate ))
-            },1000)
+                const secondsDifference = differenceInSeconds(new Date(), activeCycle.startDate )
+
+                if(secondsDifference >= totalSeconds){
+                    setCycles(state => state.map((cycle) => {
+                        if(cycle.id === activeCycleId){
+                            return { ...cycle, finishedDate: new Date() }
+                        }else {
+                            return cycle
+                        }
+                    }),
+                    )
+
+                    setAmountSecondPassed(totalSeconds)
+                    clearInterval(interval)
+
+                }else {
+                    setAmountSecondPassed(secondsDifference)
+                }
+            }, 1000)
         }
 
         return () => {
             clearInterval(interval)
         }
 
-    }, [activeCycle])
+    }, [activeCycle, totalSeconds, activeCycleId])
 
     const handleCreateNewCycle = (data: newCycleFormData) => {
         const id =  String(new Date().getTime());
@@ -68,8 +88,8 @@ export const Home = () => {
     }
 
     const handleInterruptCycles = () => {
-        setCycles(
-            cycles.map((cycle) => {
+        setCycles(state =>
+            state.map(cycle => {
                 if(cycle.id === activeCycleId){
                     return { ...cycle, interruptedDate: new Date() }
                 }else {
@@ -81,8 +101,7 @@ export const Home = () => {
         setActiveCycleId(null);
     }
 
-    const totalCycle = activeCycle ? activeCycle.minutesAmount * 60 : 0
-    const currentSecond = activeCycle ? totalCycle - amountSecondPassed: 0
+    const currentSecond = activeCycle ? totalSeconds - amountSecondPassed: 0
 
     const minutesAmount = Math.floor(currentSecond / 60)
     const secondsAmount = currentSecond % 60
@@ -96,12 +115,8 @@ export const Home = () => {
     }
    }, [minutes, seconds, activeCycle])
 
-    console.log(activeCycle)
-
     const task = watch('task');
     const isSubmitDisabled = !task;
-
-    console.log(cycles)
 
     return(
         <HomeContainer>
@@ -129,7 +144,7 @@ export const Home = () => {
                         id="minutesAmount" 
                         placeholder="00" 
                         step={5} 
-                        min={5} 
+                        min={1} 
                         max={60}
                         disabled={!!activeCycle}
                         {...register('minutesAmount', { valueAsNumber: true})}
