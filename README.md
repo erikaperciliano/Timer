@@ -10,6 +10,7 @@ React Router Dom <br />
 Styled-Components <br />
 ESlint <br />
 Phosphor React <br />
+Immer <br />
 Jest <br />
 Testing Library <br />
 
