@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useEffect, useReducer, useState } from "react";
 import { Cycle, CyclesReducer } from '../reducers/cycles/reducer'
 import { addNewCycleAction, interruptCurrentCycleAction } from "../reducers/cycles/actions";
-import { stringify } from "querystring";
+
 import { differenceInSeconds } from "date-fns";
 interface CreateCycleData {
     task: string;
