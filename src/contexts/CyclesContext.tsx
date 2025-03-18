@@ -60,7 +60,7 @@ export function CyclesContextProvider({ children }: CyclesContextProviderProps) 
 
     function setSecondsPassed(seconds: number) {
         setAmountSecondPassed(seconds)
-    }
+    } 
 
     function markCurrentCycleAsFinished() {
         dispatch(markCurrentCycleAsFinishedAction())

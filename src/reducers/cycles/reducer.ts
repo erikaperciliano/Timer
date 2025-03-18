@@ -21,12 +21,14 @@ export type CycleAction =
     | { type: ActionTypes.INTERRUPT_CURRENT_CYCLE }
     | { type: ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED }
 
-export function cyclesReducer(state: CyclesState, action: CycleAction ) {
-    switch(action.type) {
+
+export function cyclesReducer(state: CyclesState, action: unknown) {
+    const typedAction = action as CycleAction; // Type assertion
+    switch(typedAction.type) {
         case ActionTypes.ADD_NEW_CYCLE:
             return produce(state, (draft) => {
-                draft.cycles.push(action.payload.newCycle)
-                draft.activeCycleId = action.payload.newCycle.id
+                draft.cycles.push(typedAction.payload.newCycle)
+                draft.activeCycleId = typedAction.payload.newCycle.id
             })
         case ActionTypes.INTERRUPT_CURRENT_CYCLE: {
             const currentCycleIndex = state.cycles.findIndex((cycle) => {
