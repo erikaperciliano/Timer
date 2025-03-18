@@ -42,7 +42,8 @@ This project can be deployed to any static hosting provider (e.g., Netlify, Verc
 
 ## Live Demo
 
-[View the live project here](https://euphonious-chebakia-dad851.netlify.app/)
+[View the live project here](https://67d99de6aaa982000954a907--erikaperciliano-timer.netlify.app/)
+
 
 
 ## Screenshots 📸
