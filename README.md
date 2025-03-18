@@ -48,7 +48,11 @@ This project can be deployed to any static hosting provider (e.g., Netlify, Verc
 
 ## Screenshots 📸
 
+![Time - home](https://github.com/user-attachments/assets/ede290e7-e48a-4503-a71e-abf475b7ac6c)
 
+![Time - on](https://github.com/user-attachments/assets/a971db20-1bdb-419d-b196-ee4a0c5ebb01)
+
+![Timer- History](https://github.com/user-attachments/assets/0f60bb3f-1ad8-4386-b8ae-f4226ec17f63)
 
 ## Contribution 🤝
 Contributions, issues, and feature requests are welcome!
